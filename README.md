@@ -1,0 +1,2 @@
+# EcozZ
+EcozZ App
