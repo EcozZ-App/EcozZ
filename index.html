@@ -1,29 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   
-  <title>"EcozZ Tracking Prakerin & Geofencing System"</title> 
+  <title>EcozZ PRO v2.2 - Tracking Prakerin & Geofencing System</title> 
+
+  <!-- Meta Tags Pendukung Mobile Web App & PWA -->
+  <meta name="description" content="Sistem Tracking Prakerin & Absensi Geofencing Real-Time" />
+  <meta name="theme-color" content="#030712" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <!-- Open Graph Meta untuk Pratinjau Rapi saat Tautan Dibagikan di WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="EcozZ PRO v2.2 - Tracking Prakerin & Geofencing System" />
+  <meta property="og:description" content="Sistem Pelacakan Lokasi Real-Time & Presensi Geofencing Siswa Prakerin" />
+
+  <!-- Favicon Satelit Neon Emerald -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310b981'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z'/></svg>" />
 
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      overflow: hidden; /* Biar ga ada scrollbar */
-      background-color: #0d1117; /* Warna background gelap biar pas loading ga silau */
     }
-    iframe {
-      border: none;
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      height: 100dvh; /* Mengunci tinggi dinamis di browser HP agar tidak terpotong address bar */
+      overflow: hidden;
+      background-color: #030712;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Container Layar Penuh Bebas Scroll Ganda */
+    .app-viewport {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       width: 100vw;
       height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background-color: #030712;
+      overflow: hidden;
+    }
+
+    /* Iframe Utama dengan Akselerasi Hardware */
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+      flex: 1;
       display: block;
+      background-color: #030712;
+    }
+
+    /* Layar Animasi Halus saat Memuat Iframe */
+    .initial-loading-backdrop {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      background-color: #030712;
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 500;
+      z-index: -1;
+    }
+
+    .neon-spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(16, 185, 129, 0.2);
+      border-top-color: #10b981;
+      border-radius: 50%;
+      animation: spinSpinner 0.8s linear infinite;
+    }
+
+    @keyframes spinSpinner {
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
 
-  <iframe src="https://script.google.com/macros/s/AKfycbz6KDJs_x1CemRww2yJrca2c_TII73jyMZ5PxTeBZgH--wvUyPt62b-c2ZhxyiXWXFf/exec"></iframe>
+  <div class="app-viewport">
+    
+    <!-- Animasi Pembuka Halus Latar Belakang -->
+    <div class="initial-loading-backdrop">
+      <div class="neon-spinner"></div>
+      <span>Memuat sistem EcozZ...</span>
+    </div>
+
+    <!-- 
+      KUNCI SOLUSI PERBAIKAN GPS & KAMERA:
+      Atribut 'allow' di bawah ini memberikan izin delegasi (Feature Policy) resmi
+      dari domain Vercel Anda ke dalam server Google Apps Script.
+    -->
+    <iframe
+      id="ecozzMainFrame"
+      src="https://script.google.com/macros/s/AKfycbz6KDJs_x1CemRww2yJrca2c_TII73jyMZ5PxTeBZgH--wvUyPt62b-c2ZhxyiXWXFf/exec"
+      allow="geolocation; camera; microphone; clipboard-read; clipboard-write; display-capture; fullscreen"
+      allowfullscreen="true"
+      webkitallowfullscreen="true"
+      mozallowfullscreen="true"
+      title="EcozZ Tracking Prakerin & Geofencing System">
+    </iframe>
+
+  </div>
 
 </body>
 </html>
